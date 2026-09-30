@@ -55,10 +55,10 @@ app.patch('/products/:id', (req, res) => {
     }
 
     const updatedProduct = {
-        nom: req.body.nom || product.nom,
-        prix: req.body.prix || product.prix,
-        description: req.body.description || product.description,
-        categorie: req.body.categorie || product.categorie
+        nom: req.body.nom ?? product.nom,
+        prix: req.body.prix ?? product.prix,
+        description: req.body.description ?? product.description,
+        categorie: req.body.categorie ?? product.categorie
     };
 
     const result = db.prepare('UPDATE products SET nom = ?, prix = ?, description = ?, categorie = ? WHERE id = ?').run(updatedProduct.nom, updatedProduct.prix, updatedProduct.description, updatedProduct.categorie, req.params.id);
