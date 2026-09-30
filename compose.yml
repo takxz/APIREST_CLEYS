@@ -1,0 +1,12 @@
+services:
+  sqlite-init:
+    image: keinos/sqlite3:latest
+    container_name: sqlite-init
+    entrypoint: ["sh", "-c"]
+    command:
+      - sqlite3 /data/database.sqlite < /seed/init.sql && echo "Base SQLite prête (/data/database.sqlite)"
+    volumes:
+      - ./data:/data
+      - ./init.sql:/seed/init.sql:ro
+      - ./product.json:/seed/product.json:ro
+    restart: "no"
