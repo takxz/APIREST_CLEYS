@@ -1,0 +1,107 @@
+[
+  {
+    "id": 1,
+    "nom": "Casque audio Bluetooth",
+    "description": "Casque sans fil avec réduction de bruit active et 30 heures d'autonomie.",
+    "prix": 89.99,
+    "categorie": "Électronique"
+  },
+  {
+    "id": 2,
+    "nom": "Souris ergonomique",
+    "description": "Souris verticale sans fil pour limiter la fatigue du poignet.",
+    "prix": 34.90,
+    "categorie": "Informatique"
+  },
+  {
+    "id": 3,
+    "nom": "Clavier mécanique",
+    "description": "Clavier rétroéclairé avec switches rouges et format compact.",
+    "prix": 79.00,
+    "categorie": "Informatique"
+  },
+  {
+    "id": 4,
+    "nom": "Chaise de bureau",
+    "description": "Chaise ajustable avec soutien lombaire et accoudoirs réglables.",
+    "prix": 149.50,
+    "categorie": "Mobilier"
+  },
+  {
+    "id": 5,
+    "nom": "Lampe de bureau LED",
+    "description": "Lampe articulée avec trois modes de luminosité et port de charge USB.",
+    "prix": 24.99,
+    "categorie": "Maison"
+  },
+  {
+    "id": 6,
+    "nom": "Sac à dos urbain",
+    "description": "Sac résistant à l'eau avec compartiment rembourré pour ordinateur 15 pouces.",
+    "prix": 49.90,
+    "categorie": "Accessoires"
+  },
+  {
+    "id": 7,
+    "nom": "Bouteille isotherme",
+    "description": "Bouteille en acier inoxydable de 750 ml, garde le froid 24 h et le chaud 12 h.",
+    "prix": 19.95,
+    "categorie": "Sport"
+  },
+  {
+    "id": 8,
+    "nom": "Tapis de yoga",
+    "description": "Tapis antidérapant de 6 mm d'épaisseur avec sangle de transport.",
+    "prix": 22.00,
+    "categorie": "Sport"
+  },
+  {
+    "id": 9,
+    "nom": "Cafetière filtre",
+    "description": "Cafetière programmable de 1,2 L avec filtre permanent.",
+    "prix": 39.99,
+    "categorie": "Cuisine"
+  },
+  {
+    "id": 10,
+    "nom": "Set de couteaux de cuisine",
+    "description": "Ensemble de 5 couteaux en acier inoxydable avec bloc en bois.",
+    "prix": 59.00,
+    "categorie": "Cuisine"
+  },
+  {
+    "id": 11,
+    "nom": "Enceinte portable",
+    "description": "Enceinte Bluetooth étanche avec 12 heures d'autonomie.",
+    "prix": 45.00,
+    "categorie": "Électronique"
+  },
+  {
+    "id": 12,
+    "nom": "Montre connectée",
+    "description": "Montre avec suivi d'activité, cardiofréquencemètre et notifications.",
+    "prix": 119.90,
+    "categorie": "Électronique"
+  },
+  {
+    "id": 13,
+    "nom": "Roman policier",
+    "description": "Thriller haletant de 380 pages, édition de poche.",
+    "prix": 8.90,
+    "categorie": "Livres"
+  },
+  {
+    "id": 14,
+    "nom": "Plaid en laine",
+    "description": "Couverture douce et chaude de 130 x 170 cm, disponible en gris chiné.",
+    "prix": 35.00,
+    "categorie": "Maison"
+  },
+  {
+    "id": 15,
+    "nom": "Jeu de société familial",
+    "description": "Jeu de stratégie pour 2 à 6 joueurs, à partir de 8 ans.",
+    "prix": 27.50,
+    "categorie": "Jeux"
+  }
+]
