@@ -1,13 +1,8 @@
-const express = require('express');
 const bcrypt = require('bcrypt');
-const { DatabaseSync } = require('node:sqlite');
-const router = express.Router();
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
+const db = require('../config/db');
 
-const db = new DatabaseSync('./data/database.sqlite');
-
-router.post('/register', async (req, res) => {
+exports.register = async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -24,10 +19,9 @@ router.post('/register', async (req, res) => {
     db.prepare('INSERT INTO users (email, mot_de_passe) VALUES (?, ?)').run(email, hashedPassword);
 
     res.status(201).json({ message: 'Utilisateur créé avec succès.' });
-});
+};
 
-
-router.post('/login', async (req, res) => {
+exports.login = async (req, res) => {
     const { email, password } = req.body;
 
     const user = db.prepare('SELECT * FROM users WHERE email = ?').get(email);
@@ -54,9 +48,9 @@ router.post('/login', async (req, res) => {
     );
 
     res.status(200).json({ message: 'Connexion réussie.', token, refreshToken });
-});
+};
 
-router.post('/refresh', (req, res) => {
+exports.refresh = (req, res) => {
     const { refreshToken } = req.body;
 
     if (!refreshToken) {
@@ -74,6 +68,4 @@ router.post('/refresh', (req, res) => {
     } catch (err) {
         res.status(401).json({ message: 'Refresh token invalide ou expiré.' });
     }
-});
-
-module.exports = router;
+};
