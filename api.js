@@ -1,10 +1,13 @@
 const express = require('express');
 const { DatabaseSync } = require('node:sqlite');
-
+require('dotenv').config();
+const authRoutes = require('./routes/auth');
 const db = new DatabaseSync('./data/database.sqlite');
 const app = express();
+const authMiddleware = require('./middleware/auth');
 
 app.use(express.json());
+app.use('/auth', authRoutes);
 
 app.listen(8000, () => {
   console.log('Server is running on port 8000');
@@ -24,12 +27,12 @@ app.get('/products/:id', (req, res) => {
   }
 });
 
-app.post('/products', (req, res) => {
+app.post('/products', authMiddleware, (req, res) => {
     const product = db.prepare('INSERT INTO products (nom, prix, description, categorie) VALUES (?, ?, ?, ?)').run(req.body.nom, req.body.prix, req.body.description, req.body.categorie);
     res.status(201).json({ id: Number(product.lastInsertRowid) });
 })
 
-app.delete('/products/:id', (req, res) => {
+app.delete('/products/:id', authMiddleware, (req, res) => {
     const result = db.prepare('DELETE FROM products WHERE id = ?').run(req.params.id);
     if (result.changes > 0) {
         res.status(204).send();
@@ -38,7 +41,7 @@ app.delete('/products/:id', (req, res) => {
     }
 })
 
-app.put('/products/:id', (req, res) => {
+app.put('/products/:id', authMiddleware, (req, res) => {
     const result = db.prepare('UPDATE products SET nom = ?, prix = ?, description = ?, categorie = ? WHERE id = ?').run(req.body.nom ? req.body.nom : null, req.body.prix ? req.body.prix : null, req.body.description ? req.body.description : null, req.body.categorie ? req.body.categorie : null, req.params.id);
     if (result.changes > 0) {
         res.status(200).json({ message: 'Produit mis à jour avec succès' });
@@ -47,7 +50,7 @@ app.put('/products/:id', (req, res) => {
     }
 })
 
-app.patch('/products/:id', (req, res) => {
+app.patch('/products/:id', authMiddleware, (req, res) => {
     const product = db.prepare('SELECT * FROM products WHERE id = ?').get(req.params.id);
     
     if (!product) {

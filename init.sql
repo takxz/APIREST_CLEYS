@@ -16,3 +16,10 @@ SELECT
   json_extract(value, '$.categorie')
 FROM json_each(readfile('/seed/product.json'))
 WHERE NOT EXISTS (SELECT 1 FROM products);
+
+
+CREATE TABLE IF NOT EXISTS users (
+  id       INTEGER PRIMARY KEY,
+  email    TEXT UNIQUE NOT NULL,
+  mot_de_passe TEXT NOT NULL
+);
