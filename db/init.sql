@@ -3,7 +3,8 @@ CREATE TABLE IF NOT EXISTS products (
   nom         TEXT NOT NULL,
   description TEXT,
   prix        REAL NOT NULL,
-  categorie   TEXT
+  categorie   TEXT,
+  created_by  INTEGER REFERENCES users(id)
 );
 
 -- Chargement initial depuis product.json (uniquement si la table est vide)
@@ -21,5 +22,6 @@ WHERE NOT EXISTS (SELECT 1 FROM products);
 CREATE TABLE IF NOT EXISTS users (
   id       INTEGER PRIMARY KEY,
   email    TEXT UNIQUE NOT NULL,
-  mot_de_passe TEXT NOT NULL
+  mot_de_passe TEXT NOT NULL,
+  role     TEXT NOT NULL DEFAULT 'client' CHECK (role IN ('client', 'manager', 'admin'))
 );

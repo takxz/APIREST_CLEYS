@@ -36,7 +36,7 @@ exports.login = async (req, res) => {
     }
 
     const token = jwt.sign(
-        { email: user.email },
+        { id: user.id, email: user.email, role: user.role },
         process.env.JWT_SECRET,
         { expiresIn: '5m' }
     );
@@ -59,8 +59,12 @@ exports.refresh = (req, res) => {
 
     try {
         const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
+        const user = db.prepare('SELECT * FROM users WHERE email = ?').get(decoded.email);
+        if (!user) {
+            return res.status(401).json({ message: 'Utilisateur introuvable.' });
+        }
         const token = jwt.sign(
-            { email: decoded.email },
+            { id: user.id, email: user.email, role: user.role },
             process.env.JWT_SECRET,
             { expiresIn: '5m' }
         );
